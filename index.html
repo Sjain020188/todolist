@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/lodash@4.17.11"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="jumbotron text-center">
+            <h1>My To-do List</h1> 
+          </div>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-4">
+                <h3>To-Do list</h3>
+                <ul id="project_container">
+
+                </ul>
+              </div>
+              <div class="col-sm-4">
+                <h3>Add project</h3>
+                <div class="table-container">
+                    <div class="table-row">
+                        <div class="table-cell">
+                            Name:
+                        </div>
+                        <div class="table-cell">
+                            <input id="prj_name" type="text">
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell">
+                            Description:
+                        </div>
+                        <div class="table-cell">
+                            <input id="prj_desc" type="text">
+                        </div>
+                    </div>
+                    <div class="table-row">
+                        <div class="table-cell">
+                            <input id="add_prj" type="button" value="Add project">
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <h3>Add To-do</h3> 
+                <div class="table-container">
+                        <div class="table-row">
+                            <div class="table-cell">
+                                Title:
+                            </div>
+                            <div class="table-cell">
+                                <input id="todo_name" type="text">
+                            </div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell">
+                                Description:
+                            </div>
+                            <div class="table-cell">
+                                <input id="todo_desc" type="text">
+                            </div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell">
+                                Due Date:
+                            </div>
+                            <div class="table-cell">
+                                <input id="todo_duedate" type="date">
+                            </div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell">
+                                 Priority:
+                            </div>
+                            <div id="todo_prio">
+                                    <select name="todo_prio">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                             </div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell">
+                                Project:
+                            </div>
+                            <div class="table-cell">
+                                <select name="todo_project" type="text"></select>
+                            </div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell">
+                                <input id="add_todo" type="button" value="Add to-Do">
+                            </div>
+                        </div>
+                    </div>
+              </div>
+            </div>
+          </div>
+          <div id="myModal" class="modal row col-sm-12 justify-content-center">
+              <div class="col-sm-2"></div>
+              <div class="modal-content col-sm-8">
+                  <span class="close">X</span>
+                  <div class="modalForm">
+                      
+                  </div>
+              </div>
+              <div class="col-sm-2"></div>
+          </div>
+        
+        <script src="index.js" async defer></script>
+    </body>
+</html>

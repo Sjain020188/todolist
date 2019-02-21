@@ -1,0 +1,88 @@
+.table-container
+{
+    display:table;
+}
+.table-row
+{
+    display: table-row;
+    margin-bottom: 10px;
+}
+.table-cell
+{
+    display: table-cell;
+    padding:10px;
+}
+
+#project_container li
+{
+    list-style: none;
+    padding: 10px;
+    font-size: 26px;
+    padding:0px;
+
+}
+#project_container
+{
+    padding:0px;
+}
+
+
+#project_container li ul, #project_container li ul li
+{
+font-size: 20px;
+font-weight: normal;
+list-style-type: none;
+}
+
+#project_container li ul li input:checked + label
+{
+    text-decoration:line-through;
+    background-color:#F9F9F9;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    text-align:right;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .glyphicon-minus-sign
+  {
+    color:red;
+    padding:10px;
+    font-size:20px;
+  }
+
+
