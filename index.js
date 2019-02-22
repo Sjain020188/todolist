@@ -1,4 +1,3 @@
-
 class Project
 {
     constructor(name,desc)
@@ -26,7 +25,7 @@ function displayTodos()
     let counter=0;
     Projects.forEach(project=>{
         displayNewProject(project,counter);
-        addPrj_TodoDropdwn(project,counter);
+    //    addPrj_TodoDropdwn(project,counter);
         counter++;
     });
     counter=0;
@@ -35,10 +34,14 @@ function displayTodos()
 
 function displaynewtodo(todo,i)
 {
+    console.log(todo);
     const projects = document.querySelectorAll("#project_container li")
+    console.log(todo.project);
+    console.log(projects);
     projects.forEach(project=>{
         if(project.innerHTML.indexOf(todo.project)>-1)
         {
+            console.log("condition true");
             const li = document.createElement('li');
             const label = document.createElement('label');
             var checkbox = document.createElement('input');
@@ -69,35 +72,28 @@ function markToDoDone(index)
     localStorage.setItem("TODO",JSON.stringify(todos));
 }
 
-
-
-function editProject(e)
+function showModal()
 {
-    const targetIndex=e.target.parentNode.dataset.index;
-    console.log(e);
     const modal = document.querySelector(".modal");
     modal.style.display="block";
-    const modalcontent=document.querySelector(".modalForm");
+   
     const close = document.querySelector(".close");
     close.addEventListener("click",(e)=>modal.style.display="none");
-    const prjNameInput = document.createElement("input");
-    const prjDescInput = document.createElement("input");
-    prjNameInput.type="text";
-    prjDescInput.type="text";
-    prjNameInput.id="prj_name";
-    prjDescInput.id="prj_desc";
-    prjNameInput.value=Projects[targetIndex].name;
-    prjDescInput.value=Projects[targetIndex].desc;
+}
+
+function setModalProjectContent()
+{
+    const modalcontent=document.querySelector(".modalForm");
     modalcontent.innerHTML=`
     <div class="col-sm-4">
-                <h3>Edit project</h3>
+                <h3>Project</h3>
                 <div class="table-container">
                     <div class="table-row">
                         <div class="table-cell">
                             Name:
                         </div>
                         <div class="table-cell prj_name_input">
-                            
+                            <input type="text" id="prj_name">
                         </div>
                     </div>
                     <div class="table-row ">
@@ -105,18 +101,97 @@ function editProject(e)
                             Description:
                         </div>
                         <div class="table-cell prj_desc_input">
+                            <input type="text" id="prj_desc">
                         </div>
                     </div>
                     <div class="table-row">
                         <div class="table-cell">
-                            <input id="edit_prj" type="button" value="Edit project">
+                            <input class="projectBtn" type="button">
                         </div>
                     </div>
                 </div>
               </div>
     `
-    document.querySelector(".prj_name_input").appendChild(prjNameInput);
-    document.querySelector(".prj_desc_input").appendChild(prjDescInput);
+}
+
+function setModalToDoContent()
+{
+    const modalcontent=document.querySelector(".modalForm");
+    modalcontent.innerHTML=`
+    <h3>Add To-do</h3> 
+    <div class="table-container">
+            <div class="table-row">
+                <div class="table-cell">
+                    Title:
+                </div>
+                <div class="table-cell">
+                    <input id="todo_name" type="text">
+                </div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">
+                    Description:
+                </div>
+                <div class="table-cell">
+                    <input id="todo_desc" type="text">
+                </div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">
+                    Due Date:
+                </div>
+                <div class="table-cell">
+                    <input id="todo_duedate" type="date">
+                </div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">
+                     Priority:
+                </div>
+                <div id="todo_prio">
+                        <select name="todo_prio">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                 </div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">
+                    Project:
+                </div>
+                <div class="table-cell">
+                    <span name="todo_project"></span>
+                </div>
+            </div>
+            <div class="table-row">
+                <div class="table-cell">
+                    <input id="add_todo" type="button" value="Add to-Do">
+                </div>
+            </div>
+        </div>`
+}
+
+function editProject(e)
+{
+    const targetIndex=e.target.parentNode.dataset.index;
+    console.log(e);
+    showModal();
+    setModalProjectContent();
+    const prjNameInput = document.getElementById("prj_name");
+    const prjDescInput = document.getElementById("prj_desc");
+    const prjEdtBtn = document.querySelector(".projectBtn");
+ //   prjNameInput.type="text";
+ //   prjDescInput.type="text";
+ //   prjNameInput.id="prj_name";
+ //   prjDescInput.id="prj_desc";
+    prjNameInput.value=Projects[targetIndex].name;
+    prjDescInput.value=Projects[targetIndex].desc;
+    prjEdtBtn.id="edit_prj";
+    prjEdtBtn.value="Edit project";
+  //  document.querySelector(".prj_name_input").appendChild(prjNameInput);
+  //  document.querySelector(".prj_desc_input").appendChild(prjDescInput);
     const edit = document.querySelector("#edit_prj");
     edit.addEventListener("click",(event)=>{
         Projects[targetIndex].name = document.querySelector(".modal #prj_name").value;
@@ -128,8 +203,8 @@ function editProject(e)
         })
         localStorage.setItem("TODO",JSON.stringify(todos));
         e.target.innerText=document.querySelector(".modal #prj_name").value;
-        document.querySelector(`[name='todo_project'] option[data-index='${targetIndex}']`).innerText = document.querySelector(".modal #prj_name").value;
-        modal.style.display="none";
+     //   document.querySelector(`[name='todo_project'] option[data-index='${targetIndex}']`).innerText = document.querySelector(".modal #prj_name").value;
+     document.querySelector(".modal").style.display="none";
     })
 
 }
@@ -141,13 +216,11 @@ function deleteProject(e)
     e.target.parentNode.parentNode.removeChild(e.target.parentNode.parentNode.childNodes[targetIndex+1]);
     Projects.splice(targetIndex,1);
     localStorage.setItem('PROJECT',JSON.stringify(Projects));
- 
     let filterted = _.remove(todos,function(todo)
     {
         return (todo.project.indexOf(e.target.previousSibling.innerText)>-1)
     })
     console.log(filterted);
-   
     localStorage.setItem("TODO",JSON.stringify(todos));
     document.querySelector("#project_container").innerHTML="";
     document.querySelector("[name='todo_project']").innerHTML="";
@@ -178,15 +251,32 @@ function displayNewProject(item,i)
        li.appendChild(delSpan);
         projectContainer.appendChild(li);  
         const ul = document.createElement('ul');
+       ul.innerHTML="<li class='add_new'><span class='glyphicon glyphicon-plus'></span>Add New</li>"
         li.appendChild(ul);
         span.addEventListener ("click",(e)=>editProject(e));
         delSpan.addEventListener("click",(e)=>deleteProject(e));
+        const addNewIcons= document.querySelectorAll('.add_new')
+        addNewIcons.forEach(addNewIcon=>addNewIcon.addEventListener("click",(e)=>newToDo(e)));
 }
 
-
+function newToDo(e)
+{
+    showModal();
+    console.log(e.target.parentNode.parentNode.dataset.index);
+    setModalToDoContent();
+        console.log(e);
+        document.querySelector("[name='todo_project']").innerText=Projects[e.target.parentNode.parentNode.dataset.index].name;
+        let add_todo=document.querySelector("#add_todo");
+    add_todo.addEventListener("click",(e)=>{
+        document.querySelector(".modal").style.display="none";
+        addTodo()});
+ 
+}
 
 function addProject()
 {
+
+
     let name = document.querySelector("#prj_name").value;
     let desc = document.querySelector("#prj_desc").value;
     if(name=="")
@@ -198,17 +288,19 @@ function addProject()
     document.querySelector("#prj_name").value="";
     document.querySelector("#prj_desc").value="";
     displayNewProject(Projects[Projects.length-1],Projects.length-1);
-    addPrj_TodoDropdwn(Projects[Projects.length-1],Projects.length-1);
+ //   addPrj_TodoDropdwn(Projects[Projects.length-1],Projects.length-1);
     }
+    
 }
 
 function addTodo()
 {
+
     let name = document.querySelector("#todo_name").value;
     let desc = document.querySelector("#todo_desc").value;
     let dueDate = document.querySelector("#todo_duedate").value;
     let prio = document.querySelector("[name='todo_prio']").value;
-    let project = document.querySelector("[name='todo_project']").value;
+    let project = document.querySelector("[name='todo_project']").textContent;
     if(name=="" || dueDate=="" || project=="")
         alert("Please add to-do title,due date and project");
     else
@@ -226,15 +318,32 @@ function addTodo()
 
 }
 
+function AddNewProject()
+{
+    showModal();
+    setModalProjectContent();
+    const prjAddBtn = document.querySelector(".projectBtn");
+    prjAddBtn.id="add_prj";
+    prjAddBtn.value="Add Project";
+    let add_prj=document.querySelector("#add_prj");
+    console.log(add_prj);
+    add_prj.addEventListener("click",(e)=>{
+        document.querySelector(".modal").style.display="none";
+        addProject();
+        
+    });
+}
+
 
 
 let Projects = JSON.parse(localStorage.getItem('PROJECT')) || [];
 let todos = JSON.parse(localStorage.getItem('TODO')) || [];
 displayTodos();
-let add_prj=document.querySelector("#add_prj");
-add_prj.addEventListener("click",(e)=>addProject());
-let add_todo=document.querySelector("#add_todo");
-add_todo.addEventListener("click",(e)=>addTodo());
+let addProjectBtn=document.querySelector(".addPrjbtn");
+addProjectBtn.addEventListener("click",(e)=>AddNewProject());
+    
+
+
 
 
 

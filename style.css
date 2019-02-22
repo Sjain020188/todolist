@@ -18,10 +18,27 @@
     list-style: none;
     padding: 10px;
     font-size: 26px;
-    padding:0px;
+    padding:5px;
+    background-color:#000;
+    color:#fff;
+    margin-bottom:15px;
 
 }
-#project_container
+
+.glyphicon+ ul li
+{
+  background-color:#efefef !important;
+  color:#000 !important;
+  margin-bottom:0px !important;;
+}
+
+.add_new
+{
+  color:#444 !important;
+}
+
+
+#project_container,ul
 {
     padding:0px;
 }
@@ -85,4 +102,9 @@ list-style-type: none;
     font-size:20px;
   }
 
+  .addPrjbtn
+  {
+    float: right !important;
+    margin-bottom: 10px !important;
+  }
 
